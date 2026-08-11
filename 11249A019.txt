@@ -1,0 +1,207 @@
+
+SQL*Plus: Release 11.2.0.1.0 Production on Tue Aug 11 06:43:59 2026
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+Enter user-name: a019@db2021
+Enter password:
+
+Connected to:
+Oracle Database 11g Release 11.2.0.1.0 - Production
+
+SQL> CREATE TABLE Course (
+  2      CourseID VARCHAR(10) PRIMARY KEY,
+  3      CourseName VARCHAR(100) NOT NULL,
+  4      Credits INT CHECK (Credits >= 1),
+  5      Department VARCHAR(50)
+  6  );
+CREATE TABLE Course (
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> CREATE TABLE Course (
+  2      CourseID VARCHAR(10),
+  3      CourseName VARCHAR(100),
+  4      Credits INT CHECK (Credits >= 1),
+  5      Department VARCHAR(50)
+  6  );
+CREATE TABLE Course (
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> CREATE TABLE Course1 (
+  2      Course_ID VARCHAR,
+  3      Course_Name VARCHAR(100),
+  4      Credits NUMBER,
+  5      Department VARCHAR(50)
+  6  );
+    Course_ID VARCHAR,
+                     *
+ERROR at line 2:
+ORA-00906: missing left parenthesis
+
+
+SQL> CREATE TABLE Course1(
+  2      Course_ID VARCHAR,
+  3      Course_Name VARCHAR2(100),
+  4      Credits NUMBER,
+  5      Department VARCHAR(50)
+  6  );
+    Course_ID VARCHAR,
+                     *
+ERROR at line 2:
+ORA-00906: missing left parenthesis
+
+
+SQL> CREATE TABLE Course1(
+  2      Course_ID NUMBER,
+  3      Course_Name VARCHAR2(100),
+  4      Credits NUMBER,
+  5      Department VARCHAR(50)
+  6  );
+
+Table created.
+
+SQL>  DESC COURSE1
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ COURSE_ID                                          NUMBER
+ COURSE_NAME                                        VARCHAR2(100)
+ CREDITS                                            NUMBER
+ DEPARTMENT                                         VARCHAR2(50)
+
+SQL> DESC COURSE1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ COURSE_ID                                          NUMBER
+ COURSE_NAME                                        VARCHAR2(100)
+ CREDITS                                            NUMBER
+ DEPARTMENT                                         VARCHAR2(50)
+
+SQL>  INSERT ALL
+  2
+SQL> CREATE TABLE STUDENT(
+  2  STUDENT_ID NUMBER,
+  3  STUDENT_NAME VARCHAR(10),
+  4  AGE NUMBER,
+  5  DEPARTMENT VARCHAR3(20)
+  6  );
+DEPARTMENT VARCHAR3(20)
+                   *
+ERROR at line 5:
+ORA-00907: missing right parenthesis
+
+
+SQL> CREATE TABLE STUDENT3(
+  2      STUDENT_ID NUMBER,
+  3      STUDENT_NAME VARCHAR(10),
+  4      AGE NUMBER,
+  5      DEPARTMENT VARCHAR3(20)
+  6    );
+    DEPARTMENT VARCHAR3(20)
+                       *
+ERROR at line 5:
+ORA-00907: missing right parenthesis
+
+
+SQL>  CREATE TABLE STUDENT3(
+  2      STUDENT_ID NUMBER,
+  3      STUDENT_NAME VARCHAR3(10),
+  4      AGE NUMBER,
+  5      DEPARTMENT VARCHAR3(20)
+  6    );
+    STUDENT_NAME VARCHAR3(10),
+                         *
+ERROR at line 3:
+ORA-00907: missing right parenthesis
+
+
+SQL> CREATE TABLE STUDENT3 (
+  2      STUDENT_ID NUMBER,
+  3      STUDENT_NAME VARCHAR2(10),
+  4      AGE NUMBER,
+  5      DEPARTMENT VARCHAR2(20)
+  6    );
+
+Table created.
+
+SQL> DESC STUDENT3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_ID                                         NUMBER
+ STUDENT_NAME                                       VARCHAR2(10)
+ AGE                                                NUMBER
+ DEPARTMENT                                         VARCHAR2(20)
+
+SQL> ALTER TABLE STUDENT3 ADD Email VARCHAR2(10);
+
+Table altered.
+
+SQL> DESC STUDENT3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_ID                                         NUMBER
+ STUDENT_NAME                                       VARCHAR2(10)
+ AGE                                                NUMBER
+ DEPARTMENT                                         VARCHAR2(20)
+ EMAIL                                              VARCHAR2(10)
+
+SQL> ALTER TABLE STUDENT3 MODIFY STUDENT_NAME VARCHAR2(10);
+
+Table altered.
+
+SQL> DESC STUDENT3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_ID                                         NUMBER
+ STUDENT_NAME                                       VARCHAR2(10)
+ AGE                                                NUMBER
+ DEPARTMENT                                         VARCHAR2(20)
+ EMAIL                                              VARCHAR2(10)
+
+SQL> ALTER TABLE STUDENT3 RENAME COLUMN AGE TP STUDENT_AGE;
+ALTER TABLE STUDENT3 RENAME COLUMN AGE TP STUDENT_AGE
+                                       *
+ERROR at line 1:
+ORA-00946: missing TO keyword
+
+
+SQL> ALTER TABLE STUDENT3 RENAME COLUMN AGE TO STUDENT_AGE;
+
+Table altered.
+
+SQL> DESC STUDENT3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_ID                                         NUMBER
+ STUDENT_NAME                                       VARCHAR2(10)
+ STUDENT_AGE                                        NUMBER
+ DEPARTMENT                                         VARCHAR2(20)
+ EMAIL                                              VARCHAR2(10)
+
+SQL> DESC STUDENT3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_ID                                         NUMBER
+ STUDENT_NAME                                       VARCHAR2(10)
+ STUDENT_AGE                                        NUMBER
+ DEPARTMENT                                         VARCHAR2(20)
+ EMAIL                                              VARCHAR2(10)
+
+SQL> ALTER TABLE STUDENT3 DROP COLUMN STUDENT_AGE;
+
+Table altered.
+
+SQL> DESC STUDENT3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_ID                                         NUMBER
+ STUDENT_NAME                                       VARCHAR2(10)
+ DEPARTMENT                                         VARCHAR2(20)
+ EMAIL                                              VARCHAR2(10)
+
+SQL>
